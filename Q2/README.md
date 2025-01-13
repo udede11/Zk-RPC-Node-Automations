@@ -1,5 +1,3 @@
-Here's the updated README.md with the information about the dummy-blockchain-node.service file:
-
 # Blockchain Service Monitor
 
 This repository contains a Python script and associated files for monitoring and managing a blockchain test service. The system is designed to automatically restart the service if it fails, log the restart events, and notify the team via Slack.
@@ -95,10 +93,6 @@ The repository includes a `dummy-blockchain-node.service` file, which runs a dum
    ```
 
 This allows you to verify that the monitoring script correctly detects service failures, restarts the service, and sends notifications as expected.
-
-## Contributing
-
-Contributions to improve the monitoring system are welcome. Please submit pull requests or open issues to discuss proposed changes.
 
 ## License
 
