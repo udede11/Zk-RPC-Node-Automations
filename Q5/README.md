@@ -1,5 +1,3 @@
-Here's a README.md for the provided code:
-
 # Performance Issue Investigation Tools
 
 This repository contains tools and scripts for investigating performance issues in blockchain operations, specifically for the CDK-Erigon client.
@@ -7,7 +5,7 @@ This repository contains tools and scripts for investigating performance issues 
 ## Contents
 
 1. `report.md`: A template for reporting performance issues to the development team.
-2. `run-and-trace.sh`: A shell script containing commands for tracing and measuring performance of the node or Docker container.
+2. `run-and-trace.sh`: A shell script containing commands for tracing and measuring performance of the node.
 
 ## Usage
 
@@ -18,8 +16,6 @@ The `report.md` file provides a structured template for documenting performance 
 - Issue Summary
 - Reproduction Steps
 - Trace Analysis
-
-Use this template when reporting issues to the development team.
 
 ### Tracing and Performance Measurement
 
@@ -46,6 +42,16 @@ The `run-and-trace.sh` script contains various commands for tracing and measurin
    heaptrack <process>
    ```
 
+## Investigation Steps
+
+When encountering high latency in a particular blockchain operation:
+
+1. Analyze the execution trace to identify the specific operation causing the delay.
+2. Use system monitoring tools to check resource usage during the operation.
+3. Profile CPU and memory usage to identify potential bottlenecks.
+4. Review node configuration settings that might affect the operation's performance.
+5. Examine the client code related to the operation for potential optimizations.
+
 ## Optimization Steps
 
 After identifying the bottleneck, consider the following optimization steps:
@@ -56,24 +62,32 @@ After identifying the bottleneck, consider the following optimization steps:
    - Update sync modes
    - Tune transaction pool settings
 
-2. Network Issues:
-   - Adjust peer limits
-   - Modify network timeouts
-   - Update discovery settings
+2. Client Software Issues:
+   - Identify specific functions or modules causing the delay
+   - Look for inefficient algorithms or data structures
+   - Check for unnecessary computations or database operations
+   - Consider optimizing critical paths in the code
 
-3. Container Issues:
-   - Adjust resource limits
-   - Modify container networking
-   - Update volume mounts
+3. Hardware Constraints:
+   - Evaluate if the hardware meets the recommended specifications
+   - Consider upgrading CPU, RAM, or storage if necessary
 
-4. Client Software Issues:
-   - Report to development team
-   - Try different client versions
-   - Consider alternative clients
+## Reporting to Development Team
+
+When reporting issues to the CDK-Erigon development team:
+
+1. Provide a detailed description of the high-latency operation
+2. Include the full execution trace
+3. Share system specifications and node configuration
+4. Provide profiling results (CPU and memory)
+5. Include any relevant logs or error messages
+6. Describe steps to reproduce the issue
+7. Share any attempted optimizations and their results
 
 ## Contributing
 
 If you identify any issues or have suggestions for improvement, please open an issue or submit a pull request.
 
 ## License
+
 The MIT License (MIT)
