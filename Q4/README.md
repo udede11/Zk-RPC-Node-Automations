@@ -1,5 +1,7 @@
 # Question 4 
 
+This repository contains a GitHub Actions workflow for automating the build, deployment, and testing of a blockchain client service.
+
 ## Table of Contents
 - [Workflow Overview](#workflow-overview)
 - [Prerequisites](#prerequisites)
@@ -13,8 +15,6 @@
   - [Cleanup](#cleanup)
   - [Notify](#notify)
 - [Integrating Fuzz Testing](#integrating-fuzz-testing)
-
-This repository contains a GitHub Actions workflow for automating the build, deployment, and testing of a blockchain client service.
 
 ## Workflow Overview
 

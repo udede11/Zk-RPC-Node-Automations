@@ -1,5 +1,3 @@
-Here's the README.md with a table of contents added:
-
 # Question 5 
 
 This repository contains tools and scripts for investigating performance issues in blockchain operations, specifically for the CDK-Erigon client.
