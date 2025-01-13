@@ -1,4 +1,22 @@
-# Question 1:
+# Question 1
+
+# Table of Contents
+1. [Question 1](#question-1)
+   1. [Overall Design and Components](#overall-design-and-components)
+      1. [zkRollup Components](#zkrollup-components)
+      2. [External Components/Services](#external-componentsservices)
+      3. [Monitoring Services](#monitoring-services)
+   2. [Network Design](#network-design)
+      1. [Public Subnets Group](#public-subnets-group)
+      2. [Private App Subnets](#private-app-subnets-accessible-from-all-the-other-private-subnets)
+      3. [Private Subnets Core Group](#private-subnets-core-group-eks-core-node-group)
+      4. [Private Subnets Data Group](#private-subnets-data-group)
+      5. [Private Subnets Compute Group](#private-subnets-compute-group-eks-prover-node-group)
+   3. [Deployments and Automation](#deployments-and-automation)
+      1. [Infrastructure Set up](#infrastructure-set-up)
+      2. [Scaling and Orchestration](#scaling-and-orchestration)
+      3. [Kubernetes Clusters](#kubernetes-clusters)
+      4. [Build and Deployment Automation](#build-and-deployment-automation)
 
 ## Overall Design and Components
 

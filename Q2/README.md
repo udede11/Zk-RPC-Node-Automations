@@ -1,4 +1,14 @@
-# Blockchain Service Monitor
+# Question 2
+
+## Table of Contents
+- [Features](#features)
+- [Files](#files)
+- [Setup and Installation](#setup-and-installation)
+- [Configuration](#configuration)
+- [Logging](#logging)
+- [Error Handling and Resilience](#error-handling-and-resilience)
+- [Testing with Dummy Service](#testing-with-dummy-service)
+- [License](#license)
 
 This repository contains a Python script and associated files for monitoring and managing a blockchain test service. The system is designed to automatically restart the service if it fails, log the restart events, and notify the team via Slack.
 

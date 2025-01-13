@@ -1,6 +1,18 @@
-Here's a README.md for the provided GitHub Actions workflow:
+# Question 4 
 
-# Blockchain Client CI/CD Pipeline
+## Table of Contents
+- [Workflow Overview](#workflow-overview)
+- [Prerequisites](#prerequisites)
+- [Workflow Trigger](#workflow-trigger)
+- [Jobs Description](#jobs-description)
+  - [Validate Environment](#validate-environment)
+  - [Build and Push](#build-and-push)
+  - [Deploy Service](#deploy-service)
+  - [Contract Deployment](#contract-deployment)
+  - [Run Tests](#run-tests)
+  - [Cleanup](#cleanup)
+  - [Notify](#notify)
+- [Integrating Fuzz Testing](#integrating-fuzz-testing)
 
 This repository contains a GitHub Actions workflow for automating the build, deployment, and testing of a blockchain client service.
 
@@ -84,4 +96,3 @@ To integrate fuzz testing into this CI/CD pipeline:
 6. Track code coverage during fuzzing to identify areas needing more attention.
 
 For more details on fuzz testing integration, refer to the full answer in the original question.
-

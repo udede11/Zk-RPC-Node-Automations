@@ -1,6 +1,20 @@
-# Performance Issue Investigation Tools
+Here's the README.md with a table of contents added:
+
+# Question 5 
 
 This repository contains tools and scripts for investigating performance issues in blockchain operations, specifically for the CDK-Erigon client.
+
+## Table of Contents
+
+1. [Contents](#contents)
+2. [Usage](#usage)
+   - [Performance Issue Report](#performance-issue-report)
+   - [Tracing and Performance Measurement](#tracing-and-performance-measurement)
+3. [Investigation Steps](#investigation-steps)
+4. [Optimization Steps](#optimization-steps)
+5. [Reporting to Development Team](#reporting-to-development-team)
+6. [Contributing](#contributing)
+7. [License](#license)
 
 ## Contents
 
