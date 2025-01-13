@@ -94,10 +94,6 @@ The repository includes a `dummy-blockchain-node.service` file, which runs a dum
 
 This allows you to verify that the monitoring script correctly detects service failures, restarts the service, and sends notifications as expected.
 
-## Contributing
-
-Contributions to improve the monitoring system are welcome. Please submit pull requests or open issues to discuss proposed changes.
-
 ## License
 
 [MIT License](LICENSE)
