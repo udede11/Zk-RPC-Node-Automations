@@ -4,11 +4,11 @@ After=network.target
 
 [Service]
 Type=simple
-User=blockchain
-ExecStart=/usr/local/bin/blockchain-monitor.py
+User=root
+ExecStart=/usr/bin/python3 /usr/local/bin/blockchain-monitor.py
 Restart=always
 RestartSec=10
-Environment=SLACK_WEBHOOK_URL=your_webhook_url
 
 [Install]
 WantedBy=multi-user.target
+

@@ -1,0 +1,18 @@
+
+
+
+[Unit]
+Description=Dummy Blockchain Node Service
+After=network.target
+
+[Service]
+Type=simple
+User=nobody
+ExecStart=/bin/bash -c "while true; do echo 'Blockchain node running...'; sleep 5; done"
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
+
+

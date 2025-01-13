@@ -1,3 +1,5 @@
+Here's the updated README.md with the information about the dummy-blockchain-node.service file:
+
 # Blockchain Service Monitor
 
 This repository contains a Python script and associated files for monitoring and managing a blockchain test service. The system is designed to automatically restart the service if it fails, log the restart events, and notify the team via Slack.
@@ -16,6 +18,7 @@ This repository contains a Python script and associated files for monitoring and
 1. `monitor.py`: The main Python script that performs the monitoring and management tasks.
 2. `blockchain-monitor.service`: A systemd service file for running the monitor script as a system service.
 3. `start_service.sh`: A shell script to enable and start the monitoring service.
+4. `dummy-blockchain-node.service`: A systemd service file that runs a dummy service for testing purposes.
 
 ## Setup and Installation
 
@@ -67,6 +70,31 @@ sudo journalctl -u blockchain-monitor
 The script includes basic error handling to catch and log exceptions. The monitoring loop will continue running even if errors occur, with a longer sleep time between checks in case of errors.
 
 To ensure the script stays alive after server restarts or errors, it is set up as a systemd service with the `Restart=always` option. This means the operating system will automatically restart the script if it crashes or if the server reboots.
+
+## Testing with Dummy Service
+
+The repository includes a `dummy-blockchain-node.service` file, which runs a dummy service that prints something every 5 seconds. This can be used to test the monitoring script under different scenarios:
+
+1. Copy the `dummy-blockchain-node.service` file to the systemd directory:
+   ```
+   sudo cp dummy-blockchain-node.service /etc/systemd/system/
+   ```
+
+2. Start the dummy service:
+   ```
+   sudo systemctl start dummy-blockchain-node
+   ```
+
+3. You can now test different scenarios by stopping or killing the dummy service:
+   ```
+   sudo systemctl stop dummy-blockchain-node
+   ```
+   or
+   ```
+   sudo systemctl kill dummy-blockchain-node
+   ```
+
+This allows you to verify that the monitoring script correctly detects service failures, restarts the service, and sends notifications as expected.
 
 ## Contributing
 

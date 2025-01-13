@@ -7,6 +7,7 @@ import sys
 import os
 import json
 import requests
+import re
 from datetime import datetime
 from typing import Optional, Dict, Any
 from dataclasses import dataclass
@@ -29,7 +30,7 @@ class BlockchainServiceMonitor:
             level=logging.INFO,
             format='%(asctime)s - %(levelname)s - %(message)s',
             handlers=[
-                logging.FileHandler('/var/log/blockchain-monitor.log'),
+                logging.FileHandler('/var/log/blockchain-monitor.log', mode='a'),
                 logging.StreamHandler(sys.stdout)
             ]
         )
@@ -42,8 +43,12 @@ class BlockchainServiceMonitor:
             result = subprocess.run(
                 ['systemctl', 'status', self.service_name],
                 capture_output=True,
-                text=True
+                text=True,
+                check=False
             )
+            
+            # Log the status check result for debugging
+            self.logger.debug(f"This is the status check result: {result.stdout}")
             
             # Parse service status
             is_running = 'active (running)' in result.stdout
@@ -62,20 +67,24 @@ class BlockchainServiceMonitor:
                     
             # Get resource usage if service is running
             if is_running:
-                pid = int(result.stdout.split('\nMain PID: ')[1].split()[0])
-                resource_usage = self.get_resource_usage(pid)
-                return ServiceStatus(
-                    is_running=True,
-                    error_type=None,
-                    pid=pid,
-                    memory_usage=resource_usage['memory'],
-                    cpu_usage=resource_usage['cpu']
-                )
-                
+                pid_match = re.search(r'Main PID: (\d+)', result.stdout)
+                if pid_match:
+                    pid = int(pid_match.group(1))
+                    resource_usage = self.get_resource_usage(pid)
+                    return ServiceStatus(
+                        is_running=True,
+                        error_type=None,
+                        pid=pid,
+                        memory_usage=resource_usage['memory'],
+                        cpu_usage=resource_usage['cpu']
+                    )
+                else:
+                    self.logger.warning("PID not found in systemctl output")
+                    
             return ServiceStatus(
-                is_running=False,
+                is_running=is_running,
                 error_type=error_type,
-                pid=None,
+                pid=pid,
                 memory_usage=None,
                 cpu_usage=None
             )
@@ -90,7 +99,8 @@ class BlockchainServiceMonitor:
             result = subprocess.run(
                 ['ps', '-p', str(pid), '-o', '%mem,%cpu'],
                 capture_output=True,
-                text=True
+                text=True,
+                check=True
             )
             mem, cpu = result.stdout.split('\n')[1].strip().split()
             return {'memory': float(mem), 'cpu': float(cpu)}
@@ -102,7 +112,7 @@ class BlockchainServiceMonitor:
         """Restart the blockchain service."""
         try:
             subprocess.run(
-                ['systemctl', 'restart', self.service_name],
+                ['sudo', 'systemctl', 'restart', self.service_name],
                 check=True
             )
             return True
@@ -123,7 +133,12 @@ class BlockchainServiceMonitor:
                 )
             }
             
-            requests.post(self.slack_webhook, json=message)
+            if self.slack_webhook != "test": 
+                response = requests.post(self.slack_webhook, json=message)
+                response.raise_for_status()
+           
+            self.logger.info(f"Message sent to slack: ", message)
+
         except Exception as e:
             self.logger.error(f"Failed to send notification: {str(e)}")
 
@@ -132,6 +147,7 @@ class BlockchainServiceMonitor:
         while True:
             try:
                 status = self.check_service_status()
+                self.logger.info(f"Service status: Running={status.is_running}, Error={status.error_type}")
                 
                 if not status.is_running:
                     self.logger.warning(
@@ -153,8 +169,8 @@ class BlockchainServiceMonitor:
 
 if __name__ == "__main__":
     # Configuration should be moved to environment variables or config file
-    SERVICE_NAME = "blockchain-node"
-    SLACK_WEBHOOK = os.getenv("SLACK_WEBHOOK_URL")
+    SERVICE_NAME = "dummy-blockchain-node"
+    SLACK_WEBHOOK = os.environ.get('SLACK_WEBHOOK_URL', 'test')
     
     monitor = BlockchainServiceMonitor(SERVICE_NAME, SLACK_WEBHOOK)
     monitor.run_monitor()
