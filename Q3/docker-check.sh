@@ -9,4 +9,7 @@ docker compose ps zknode | grep "Up" | wc -l
 # Resource Usage
 docker compose stats --format "table {{.Name}}\t{{.CPUPerc}}\t{{.MemUsage}}"
 
+#Network connectivity
+docker exec <container1_name> ping -c 4 <container2_name>
+
 
