@@ -1,4 +1,3 @@
-
 ## Blockchain Knowledge (Nice to Have)
 
 ### Kurtosis & Foundry Cast

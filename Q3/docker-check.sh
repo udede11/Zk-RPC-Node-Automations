@@ -7,6 +7,6 @@ docker ps --filter "name=zknode" --format "{{.Status}}"
 docker compose ps zknode | grep "Up" | wc -l
 
 # Resource Usage
-docker stats --format "table {{.Name}}\t{{.CPUPerc}}\t{{.MemUsage}}"
+docker compose stats --format "table {{.Name}}\t{{.CPUPerc}}\t{{.MemUsage}}"
 
 

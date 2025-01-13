@@ -85,6 +85,3 @@ To integrate fuzz testing into this CI/CD pipeline:
 
 For more details on fuzz testing integration, refer to the full answer in the original question.
 
-## Customization
-
-You may need to modify the workflow to fit your specific project structure, testing framework, and deployment requirements.
