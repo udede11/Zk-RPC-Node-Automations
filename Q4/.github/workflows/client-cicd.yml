@@ -45,7 +45,6 @@ jobs:
           
     - name: Deploy with Docker Compose
       run: |
-        # Create docker-compose.yml if it doesn't exist
         echo "
         version: '3.8'
         services:
