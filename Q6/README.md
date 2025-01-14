@@ -1,4 +1,4 @@
-## Blockchain Knowledge (Nice to Have)
+# Question 6
 
 ### Kurtosis & Foundry Cast
 
