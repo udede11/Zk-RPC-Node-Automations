@@ -54,6 +54,7 @@ jobs:
           exit-code: '1'
           severity: 'CRITICAL,HIGH'
           
+<<<<<<< HEAD
       - name: Build and push client image
         uses: docker/build-push-action@v4
         with:
@@ -97,6 +98,24 @@ jobs:
         run: |
           kubectl rollout status deployment/blockchain-client -n $TEST_NETWORK_NAME
           kubectl wait --for=condition=ready pod -l app=blockchain-client -n $TEST_NETWORK_NAME --timeout=300s
+=======
+    - name: Deploy with Docker Compose
+      run: |
+        echo "
+        version: '3.8'
+        services:
+          smart-contract:
+            image: ${{ env.DOCKER_IMAGE }}:${{ env.DOCKER_TAG }}
+            ports:
+              - '8545:8545'
+            environment:
+              - NODE_ENV=production
+          ganache:
+            image: trufflesuite/ganache:latest
+            ports:
+              - '8546:8545'
+        " > docker-compose.yml
+>>>>>>> 1825f8691809ccd905561fb1745b276d999b51c7
         
       - name: Store deployment info
         run: |
