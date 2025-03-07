@@ -1,6 +1,6 @@
 # Blockchain Client Development DevOps Assignment
 
-This repository contains the answers to multiple questions from an assignment about Blockchain client development DevOps. Each question is addressed in its respective folder.
+This repository contains automations and code on Blockchain client development DevOps. 
 
 ## Structure
 
